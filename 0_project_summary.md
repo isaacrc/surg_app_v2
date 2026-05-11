@@ -2,6 +2,8 @@
 
 **Date:** April 2026
 
+![Phase Summary](phase_summary_2.png)
+
 ---
 
 A customer requested 100 Q&A pairs from SEC financial filings (10-K and 10-Q reports). Our job is to: (1) find expert annotators who know their way around a 10-K, (2) assign Q&A writing tasks across 12 pre-structured company sets, (3) have each submission reviewed by a different qualified worker, and (4) compile and deliver the best 100 to the customer. We collect up to 120 to maintain a buffer — contested or rejected Q&As can be dropped and replaced from the reserve without reopening collection.
