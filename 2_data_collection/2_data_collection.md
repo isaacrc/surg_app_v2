@@ -2,25 +2,26 @@
 
 **Date:** April 2026
 
-**Purpose:** This document describes how the main data collection (100 Q&A pairs) is structured, including document selection, annotator assignment logic, workflow, expected data output schema, and collection budget.
+**Purpose:** This document describes how the main data collection (120 Q&A pairs collected, 100 delivered) is structured, including document selection, task set design, workflow, expected data output schema, and collection budget. This is a reference document for the project lead; worker-facing instructions are in `2.1_annotation_instructions.md` and `2.2_review_instructions.md`.
 
-**Goal:** Generate 100 Q&As from expert annotators.
+**Goal:** Generate 120 Q&As from the qualified worker pool; deliver the best 100 to the customer.
 
 ---
 
 ## Part 1: Document Selection
 
-Our annotators were officially selected — now they need their documents. The question is which ones. Below we describe how these documents are selected.
-
 ### Sectors
 
-Five sectors were selected for maximum diversity in financial reporting structure, risk profile, and industry terminology:
+Five sectors were selected for maximum diversity in financial reporting structure, risk profile, and industry terminology. Technology and Financials appear three times each given their prevalence in SEC filings and depth of available annotator expertise.
 
-1. Technology
-2. Healthcare
-3. Energy
-4. Financials
-5. Industrials / Manufacturing
+| Sector | Task Sets |
+|--------|-----------|
+| Technology | 3 (A01, A06, A11) |
+| Healthcare | 2 (A02, A07) |
+| Energy | 2 (A03, A08) |
+| Financials | 3 (A04, A09, A12) |
+| Industrials | 2 (A05, A10) |
+| **Total** | **12** |
 
 ### Candidate Companies (5 per sector)
 
@@ -34,45 +35,20 @@ Companies were selected to vary by size (large/mid/small-cap) and financial heal
 | Financials | JPMorgan Chase, Bank of America, Charles Schwab, Ally Financial, SoFi Technologies |
 | Industrials | Caterpillar, Boeing, 3M, Watts Water Technologies, Haynes International |
 
-Three of these companies will be assigned to each selected annotator. See the next section for details.
+The full list of companies with filing types, dates, and SEC links is in `2.0_all_companies.csv`. This file is also distributed to workers as a reference when sourcing additional filings for Category C questions.
 
 ---
 
-## Part 2: Annotator Assignment
+## Part 2: Task Set Design
 
-### Sector Assignment
+The project uses 12 pre-structured task sets (CSVs), one per annotator slot. Each task set covers 3 companies and contains 10 Q&A slots: 3 Category A, 3 Category B, and 4 Category C. Workers self-enter their annotator ID when they claim a task.
 
-Each of the 5 sectors is assigned to exactly 2 annotators (one from the first cohort, one from the second):
+### Company Assignments
 
-| Sector | Annotator (Cohort 1) | Annotator (Cohort 2) |
-|--------|---------------------|---------------------|
-| Technology | Annotator 1 | Annotator 6 |
-| Healthcare | Annotator 2 | Annotator 7 |
-| Energy | Annotator 3 | Annotator 8 |
-| Financials | Annotator 4 | Annotator 9 |
-| Industrials | Annotator 5 | Annotator 10 |
+Companies were drawn from the sector pools to create meaningful overlap across sets in the same sector — building redundancy into the dataset while keeping each set distinct.
 
-### Company Assignment Within Sector
-
-For each annotator, 3 companies are randomly sampled from the 5 in their sector. Of those 3 companies:
-- 2 are assigned a 10-K filing
-- 1 is assigned a 10-Q filing (filing type per company is randomly assigned)
-
-Because 3 companies are drawn from 5, two annotators in the same sector will share some companies but not all — creating meaningful variation. Example:
-
-- Annotator 1 (Tech): Apple (10-K), Snowflake (10-K), Palantir (10-Q)
-- Annotator 6 (Tech): Apple (10-K), Intel (10-K), Snowflake (10-Q)
-- → Apple appears in both; Palantir and Intel do not overlap
-
-This structure produces:
-- Multiple Q&A pairs per company from different annotators (redundancy)
-- Variation in which filing type was used for the same company
-- Hard (Category C) questions that span different company combinations across annotators
-
-### Concrete Assignments (randomly drawn)
-
-| Annotator | Sector | Company 1 | Company 2 | Company 3 |
-|-----------|--------|-----------|-----------|-----------|
+| Task Set | Sector | Company 1 | Company 2 | Company 3 |
+|----------|--------|-----------|-----------|-----------|
 | A01 | Technology | Apple (10-K) | Palantir (10-K) | Snowflake (10-Q) |
 | A02 | Healthcare | UnitedHealth Group (10-K) | Teladoc Health (10-K) | Agilon Health (10-Q) |
 | A03 | Energy | ExxonMobil (10-K) | Viper Energy (10-K) | Sunrun (10-Q) |
@@ -83,106 +59,123 @@ This structure produces:
 | A08 | Energy | Chevron (10-K) | Plug Power (10-K) | Sunrun (10-Q) |
 | A09 | Financials | Bank of America (10-K) | Charles Schwab (10-K) | SoFi Technologies (10-Q) |
 | A10 | Industrials | Boeing (10-K) | 3M (10-K) | Haynes Intl. (10-Q) |
+| A11 | Technology | Palantir (10-K) | Intel (10-K) | Asana (10-Q) |
+| A12 | Financials | JPMorgan Chase (10-K) | SoFi Technologies (10-Q) | Charles Schwab (10-K) |
 
-**Sector-pair overlap (shared company per pair):**
+### Shared Companies Across Same-Sector Sets
 
-| Sector | Pair | Shared Company |
+| Sector | Sets | Shared Company |
 |--------|------|----------------|
-| Technology | A01 & A06 | Apple |
-| Healthcare | A02 & A07 | Teladoc Health |
-| Energy | A03 & A08 | Sunrun (sole 10-Q in sector; both annotators receive it) |
-| Financials | A04 & A09 | Charles Schwab |
-| Industrials | A05 & A10 | Boeing |
-
-Pre-filled assignment CSVs are located in `3_annotator_data/`: `A01_technology.csv`, `A02_healthcare.csv`, `A03_energy.csv`, `A04_financials.csv`, `A05_industrials.csv`, `A06_technology.csv`, `A07_healthcare.csv`, `A08_energy.csv`, `A09_financials.csv`, `A10_industrials.csv`.
+| Technology | A01, A06, A11 | Apple appears in A01 & A06; Intel in A06 & A11; Palantir in A01 & A11 |
+| Healthcare | A02, A07 | Teladoc Health |
+| Energy | A03, A08 | Sunrun (sole 10-Q in sector; appears in both sets) |
+| Financials | A04, A09, A12 | Charles Schwab appears in all three; JPMorgan in A04 & A12; SoFi in A09 & A12 |
+| Industrials | A05, A10 | Boeing |
 
 ---
 
 ## Workflow
 
-Each annotator receives a task packet containing:
-- `2.1_worker_facing_instructions.md`
-- 3 assigned filings and submission template: company name, filing type, filing date, SEC page URL, and PDF
+Task sets are posted to the platform as open tasks. Qualified workers claim annotation and review tasks at their own pace, with no deadlines and no minimums. Review tasks for a given set become available once the annotation for that set is submitted.
 
-**Annotator deliverables (per submission):**
+**Per annotation task (one task set = 10 Q&As):**
 
 For each of the 3 assigned companies:
 - 1 Category A Q&A
 - 1 Category B Q&A
 
-Plus, drawing on any relevant filings (including beyond the 3 provided):
+Plus, drawing on any relevant filings (including beyond the 3 provided in the task set):
 - 4 Category C Q&As
 
-**Total per annotator: 10 Q&A pairs**
+Workers receive the pre-filled CSV for their claimed task set plus filing PDFs for the 3 assigned companies. Full instructions are in `2.1_annotation_instructions.md`.
+
+**Per review task (one task set = 10 reviews):**
+
+Any qualified worker may claim the review for any completed annotation task — there is no sector-matching requirement. Workers receive the completed CSV plus all referenced filing PDFs. Full instructions are in `2.2_review_instructions.md`.
 
 ---
 
 ## Expected Data Output
 
-Each Q&A pair is recorded as one row in the annotator's CSV with the following fields:
+Each Q&A pair is recorded as one row in the task set CSV. Workers self-enter their annotator ID; all other pre-filled fields (sector, question_category, source company/filing info) are already populated.
 
 | Field | Description |
 |-------|-------------|
-| `annotator_id` | Unique annotator identifier (e.g., A01–A10) |
-| `sector` | Assigned sector (e.g., Technology) |
-| `question_category` | A, B, or C |
-| `question` | The question text |
-| `answer` | Full, self-contained answer (includes Supporting Facts section) |
-| `additional_info` | Optional: any context needed to evaluate the answer |
-| `company_name` | Company name for each source filing |
-| `filing_type` | 10-K or 10-Q |
-| `filing_date` | Filing date |
-| `sec_page_url` | URL to the SEC EDGAR HTML filing |
-| `pdf_filename` | Name of the downloaded PDF |
+| `annotator_id` | Self-entered by worker when claiming the task |
+| `sector` | Pre-filled (e.g., Technology) |
+| `question_category` | Pre-filled (A, B, or C) |
+| `question` | Worker-entered question text |
+| `answer` | Worker-entered answer |
+| `supporting_facts` | Worker-entered: source citations and evidence required to evaluate the answer without opening any filing |
+| `additional_info` | Optional: any context needed to evaluate the answer (industry conventions, non-standard definitions, etc.) |
+| `source_1_company` | Pre-filled: primary assigned company |
+| `source_1_filing_type` | Pre-filled: 10-K or 10-Q |
+| `source_1_filing_date` | Pre-filled: filing date |
+| `source_1_sec_url` | Pre-filled: Google search link to SEC EDGAR filing |
+| `source_1_pdf_filename` | Pre-filled: expected PDF filename |
+| `Rating (for reviewer)` | Reviewer-entered: 0, 1, or 2 |
+| `Explanation (for reviewer)` | Reviewer-entered: rationale and bold corrections for any Rating 1 |
 
 **Sample record:**
 
 ```
-annotator_id:       A01
-sector:             Technology
-question_category:  B
-question:           What was Apple's operating margin for fiscal year 2023,
-                    and how did it change from fiscal year 2022?
-answer:             Apple's operating margin for fiscal year 2023 was 29.8%,
-                    calculated by dividing operating income ($114.3 billion) by
-                    net sales ($383.3 billion). This is a slight decline from
-                    30.3% in fiscal year 2022 ($119.4 billion operating income /
-                    $394.3 billion net sales). The margin figures are not stated
-                    directly in the filing and require calculation from the
-                    consolidated statements of operations.
-additional_info:    [none]
-source_documents:
-  - company_name:   Apple Inc.
-    filing_type:    10-K
-    filing_date:    2023-11-03
-    sec_page_url:   https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=AAPL
-    pdf_filename:   Apple_10K_FY2023.pdf
+annotator_id:         A01
+sector:               Technology
+question_category:    B
+question:             What was Apple's operating margin for fiscal year 2024,
+                      and how did it change from fiscal year 2023?
+answer:               Apple's operating margin for fiscal year 2024 was 31.5%,
+                      calculated by dividing operating income ($123.2 billion) by
+                      net sales ($391.0 billion). This is an increase from 29.8%
+                      in fiscal year 2023 ($114.3 billion operating income /
+                      $383.3 billion net sales). Neither figure is stated directly
+                      in the filing; both require calculation from the consolidated
+                      statements of operations.
+supporting_facts:     Source: Apple 10-K FY2024, pgs. 33, 35
+                      Total revenue (FY2024): $391.0B (pg. 33)
+                      Operating income (FY2024): $123.2B (pg. 33)
+                      Total revenue (FY2023): $383.3B (pg. 35)
+                      Operating income (FY2023): $114.3B (pg. 35)
+additional_info:      [none]
+source_1_company:     Apple
+source_1_filing_type: 10-K
+source_1_filing_date: 2025-10-31
+source_1_sec_url:     https://www.google.com/search?q=site%3Asec.gov+%22Apple+Inc%22+10-K+2025
+source_1_pdf_filename: Apple_10K_2025.pdf
 ```
 
 ---
 
 ## Data Collection Budget
 
-**Rate: $20/hour**
+**Rate: $20/hour.** Workers self-report hours; expected times below are provided as guidance.
 
-Annotators spend 15 minutes reviewing each of their 3 assigned documents (getting oriented before writing), then 10 minutes composing each Category A question, 15 minutes per Category B question, and 20 minutes per Category C question (4 total). That adds up to a little over 3 hours of focused work per annotator.
+Time estimates include document orientation (folded into per-question time). Category B annotation includes a $2.50 per-question bonus; Category C annotation includes a $5.00 per-question bonus; Category C review includes a $5.00 per-question bonus.
 
-Annotators receive base pay plus a $25 bonus if all 10 Q&As pass review on the first submission.
+**Annotation (120 Q&As across 12 task sets):**
 
-**Time breakdown per annotator:**
+| Category | Count | Time per Q&A | Base pay | Bonuses | Total |
+|----------|-------|-------------|----------|---------|-------|
+| Category A | 36 | 20 min | ~$240 | — | ~$240 |
+| Category B | 36 | 25 min | ~$300 | $2.50 × 36 = $90 | ~$390 |
+| Category C | 48 | 30 min | ~$480 | $5.00 × 48 = $240 | ~$720 |
+| **Annotation total** | | | **~$1,020** | **~$330** | **~$1,350** |
 
-| Task | Calculation | Time |
-|------|-------------|------|
-| Document review | 15 min × 3 docs | 45 min |
-| Category A Q&As | 10 min × 3 | 30 min |
-| Category B Q&As | 15 min × 3 | 45 min |
-| Category C Q&As | 20 min × 4 | 80 min |
-| **Total** | | **200 min (~3h 20min)** |
+**Review (120 Q&As across 12 task sets):**
 
-**Phase budget:**
+| Category | Count | Time per review | Base pay | Bonuses | Total |
+|----------|-------|----------------|----------|---------|-------|
+| Category A | 36 | 15 min | ~$180 | — | ~$180 |
+| Category B | 36 | 20 min | ~$240 | — | ~$240 |
+| Category C | 48 | 25 min | ~$400 | $5.00 × 48 = $240 | ~$640 |
+| **Review total** | | | **~$820** | **~$240** | **~$1,060** |
 
-| Phase | What this covers | Workers | Hrs | Cost |
-|-------|-----------------|---------|-----|------|
-| Filing verification | Locate, verify, and record 10-K/10-Q filings for all 25 candidate companies [COMPLETE — sunk cost, not included in going-forward budget] | 1 | 6.25 | $125 |
-| Annotation | 10 annotators × ~3.33 hrs each (200 min) | 10 | 33.3 | $667 |
-| **Subtotal (going-forward)** | | | **33.3** | **~$667** |
+The high estimate assumes workers take ~25% longer than the expected times. Bonuses are flat and not affected by pace.
+
+| | Expected | High (+25%) |
+|--|----------|-------------|
+| Annotation base pay | ~$1,020 | ~$1,275 |
+| Annotation bonuses | ~$330 | ~$330 |
+| Review base pay | ~$820 | ~$1,025 |
+| Review bonuses | ~$240 | ~$240 |
+| **Total** | **~$2,410** | **~$2,870** |
