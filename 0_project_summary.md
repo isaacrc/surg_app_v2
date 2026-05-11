@@ -4,7 +4,7 @@
 
 ---
 
-A customer requested 100 Q&A pairs from SEC financial filings (10-K and 10-Q reports). We collect 120 to provide a buffer — rejected or contested items can be dropped and replaced without reopening collection. This is an open, self-paced project. Qualified workers on the platform claim individual tasks at their own pace, with no minimums, no deadlines, and no required pairings.
+A customer requested 100 Q&A pairs from SEC financial filings (10-K and 10-Q reports). Our job is to: (1) find expert annotators who know their way around a 10-K, (2) assign Q&A writing tasks across 12 pre-structured company sets, (3) have each submission reviewed by a different qualified worker, and (4) compile and deliver the best 100 to the customer.
 
 **At a Glance:**
 
