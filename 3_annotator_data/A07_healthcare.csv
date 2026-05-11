@@ -1,0 +1,11 @@
+annotator_id,sector,question_category,question,answer,supporting_facts,additional_info,source_1_company,source_1_filing_type,source_1_filing_date,source_1_sec_url,source_1_pdf_filename,Rating (for reviewer),Explanation (for reviewer)
+A07,Healthcare,A,,,,,HCA Healthcare,10-K,2026-02-10,https://www.google.com/search?q=site%3Asec.gov+%22HCA+Healthcare%22+10-K+2026,HCA_Healthcare_10K_2026.pdf,,
+A07,Healthcare,A,,,,,Teladoc Health,10-K,2026-02-27,https://www.google.com/search?q=site%3Asec.gov+%22Teladoc+Health%22+10-K+2026,Teladoc_Health_10K_2026.pdf,,
+A07,Healthcare,A,,,,,Hims & Hers Health,10-Q,2025-11-06,https://www.google.com/search?q=site%3Asec.gov+%22Hims+%26+Hers+Health%22+10-Q+2025,Hims_and_Hers_Health_10Q_2025.pdf,,
+A07,Healthcare,B,,,,,HCA Healthcare,10-K,2026-02-10,https://www.google.com/search?q=site%3Asec.gov+%22HCA+Healthcare%22+10-K+2026,HCA_Healthcare_10K_2026.pdf,,
+A07,Healthcare,B,,,,,Teladoc Health,10-K,2026-02-27,https://www.google.com/search?q=site%3Asec.gov+%22Teladoc+Health%22+10-K+2026,Teladoc_Health_10K_2026.pdf,,
+A07,Healthcare,B,,,,,Hims & Hers Health,10-Q,2025-11-06,https://www.google.com/search?q=site%3Asec.gov+%22Hims+%26+Hers+Health%22+10-Q+2025,Hims_and_Hers_Health_10Q_2025.pdf,,
+A07,Healthcare,C,,,,,HCA Healthcare,10-K,2026-02-10,https://www.google.com/search?q=site%3Asec.gov+%22HCA+Healthcare%22+10-K+2026,HCA_Healthcare_10K_2026.pdf,,
+A07,Healthcare,C,,,,,HCA Healthcare,10-K,2026-02-10,https://www.google.com/search?q=site%3Asec.gov+%22HCA+Healthcare%22+10-K+2026,HCA_Healthcare_10K_2026.pdf,,
+A07,Healthcare,C,,,,,HCA Healthcare,10-K,2026-02-10,https://www.google.com/search?q=site%3Asec.gov+%22HCA+Healthcare%22+10-K+2026,HCA_Healthcare_10K_2026.pdf,,
+A07,Healthcare,C,,,,,HCA Healthcare,10-K,2026-02-10,https://www.google.com/search?q=site%3Asec.gov+%22HCA+Healthcare%22+10-K+2026,HCA_Healthcare_10K_2026.pdf,,

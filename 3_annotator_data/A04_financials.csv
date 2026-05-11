@@ -1,0 +1,11 @@
+annotator_id,sector,question_category,question,answer,supporting_facts,additional_info,source_1_company,source_1_filing_type,source_1_filing_date,source_1_sec_url,source_1_pdf_filename,Rating (for reviewer),Explanation (for reviewer)
+A04,Financials,A,,,,,JPMorgan Chase,10-K,2026-02-18,https://www.google.com/search?q=site%3Asec.gov+%22JPMorgan+Chase%22+10-K+2026,JPMorgan_Chase_10K_2026.pdf,,
+A04,Financials,A,,,,,Charles Schwab,10-K,2026-02-25,https://www.google.com/search?q=site%3Asec.gov+%22Charles+Schwab%22+10-K+2026,Charles_Schwab_10K_2026.pdf,,
+A04,Financials,A,,,,,Ally Financial,10-Q,2025-10-24,https://www.google.com/search?q=site%3Asec.gov+%22Ally+Financial%22+10-Q+2025,Ally_Financial_10Q_2025.pdf,,
+A04,Financials,B,,,,,JPMorgan Chase,10-K,2026-02-18,https://www.google.com/search?q=site%3Asec.gov+%22JPMorgan+Chase%22+10-K+2026,JPMorgan_Chase_10K_2026.pdf,,
+A04,Financials,B,,,,,Charles Schwab,10-K,2026-02-25,https://www.google.com/search?q=site%3Asec.gov+%22Charles+Schwab%22+10-K+2026,Charles_Schwab_10K_2026.pdf,,
+A04,Financials,B,,,,,Ally Financial,10-Q,2025-10-24,https://www.google.com/search?q=site%3Asec.gov+%22Ally+Financial%22+10-Q+2025,Ally_Financial_10Q_2025.pdf,,
+A04,Financials,C,,,,,JPMorgan Chase,10-K,2026-02-18,https://www.google.com/search?q=site%3Asec.gov+%22JPMorgan+Chase%22+10-K+2026,JPMorgan_Chase_10K_2026.pdf,,
+A04,Financials,C,,,,,JPMorgan Chase,10-K,2026-02-18,https://www.google.com/search?q=site%3Asec.gov+%22JPMorgan+Chase%22+10-K+2026,JPMorgan_Chase_10K_2026.pdf,,
+A04,Financials,C,,,,,JPMorgan Chase,10-K,2026-02-18,https://www.google.com/search?q=site%3Asec.gov+%22JPMorgan+Chase%22+10-K+2026,JPMorgan_Chase_10K_2026.pdf,,
+A04,Financials,C,,,,,JPMorgan Chase,10-K,2026-02-18,https://www.google.com/search?q=site%3Asec.gov+%22JPMorgan+Chase%22+10-K+2026,JPMorgan_Chase_10K_2026.pdf,,
