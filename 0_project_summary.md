@@ -4,17 +4,17 @@
 
 ---
 
-A customer requested 100 Q&A pairs from SEC financial filings (10-K and 10-Q reports). Our job is to: (1) find expert annotators who know their way around a 10-K, (2) assign Q&A writing tasks across 12 pre-structured company sets, (3) have each submission reviewed by a different qualified worker, and (4) compile and deliver the best 100 to the customer.
+A customer requested 100 Q&A pairs from SEC financial filings (10-K and 10-Q reports). Our job is to: (1) find expert annotators who know their way around a 10-K, (2) assign Q&A writing tasks across 12 pre-structured company sets, (3) have each submission reviewed by a different qualified worker, and (4) compile and deliver the best 100 to the customer. We collect up to 120 to maintain a buffer — contested or rejected Q&As can be dropped and replaced from the reserve without reopening collection.
 
 **At a Glance:**
 
 | | |
 |--|--|
 | Q&As delivered to customer | 100 |
-| Q&As collected (with buffer) | 120 |
+| Q&As collected | 120 |
 | Task sets | 12 (10 Q&As each) |
 | Sectors covered | Technology (×3), Healthcare (×2), Energy (×2), Financials (×3), Industrials (×2) |
-| Budget range | ~$3,335 (expected) — ~$3,865 (high) |
+| Budget range | ~$3,335 (expected) — ~$3,865 (high), based on 120 Q&As collected |
 
 ---
 
@@ -86,7 +86,7 @@ A customer requested 100 Q&A pairs from SEC financial filings (10-K and 10-Q rep
 | Category A | Easy, single-document | 3 | 36 |
 | Category B | Medium, single-document | 3 | 36 |
 | Category C | Hard, multi-document | 4 | 48 |
-| **Total** | | **10** | **120 (max) → deliver 100** |
+| **Total** | | **10** | **120 → deliver 100** |
 
 ---
 
