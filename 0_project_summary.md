@@ -14,13 +14,13 @@ A customer requested 100 Q&A pairs from SEC financial filings (10-K and 10-Q rep
 | Q&As collected (with buffer) | 120 |
 | Task sets | 12 (10 Q&As each) |
 | Sectors covered | Technology (×3), Healthcare (×2), Energy (×2), Financials (×3), Industrials (×2) |
-| Budget range | ~$3,230 (expected) — ~$3,760 (high) |
+| Budget range | ~$3,335 (expected) — ~$3,865 (high) |
 
 ---
 
 ## Phase 1 — Qualification
 
-**Purpose:** Build a pool of workers who actually know their way around a 10-K before any annotation begins.
+**Purpose:** Build a pool of workers who have experience working with 10-Ks and 10-Qs before any annotation begins.
 
 **How it works:**
 - Surge conducts targeted outreach to equity research analysts, finance PhDs, CFA charterholders, and former investment banking analysts through its expert network
@@ -41,11 +41,11 @@ A customer requested 100 Q&A pairs from SEC financial filings (10-K and 10-Q rep
 - We create 12 task sets, each spanning 3 companies within a target sector (Technology, Financials, etc.)
 - Each set contains 10 Q&A slots: 3 Category A (easy), 3 Category B (medium), 4 Category C (hard)
 - Task sets are posted as open tasks; any qualified worker may claim any set
-- Workers self-enter their worker ID and complete as many tasks as they choose — no minimums, no deadlines
+- Workers self-enter their worker ID and complete as many tasks as they choose
 
 **Key documents:** `2_data_collection/2.1_annotation_instructions.md`, `2_data_collection/2.2_review_instructions.md`, `3_annotator_data/`
 
-**Deliverable:** 12 completed and reviewed task-set CSVs (120 Q&A pairs total)
+**Deliverable:** 12 completed and reviewed task-set CSVs (120 Q&A pairs: 36 Category A, 36 Category B, 48 Category C)
 
 ---
 
@@ -54,12 +54,12 @@ A customer requested 100 Q&A pairs from SEC financial filings (10-K and 10-Q rep
 **Purpose:** Ensure every Q&A that enters the final dataset is accurate and well-sourced.
 
 **How it works:**
-- Each submitted Q&A is blind-reviewed by a different qualified worker using a 0/1/2 rating scale
+- Each submitted Q&A is reviewed by a different qualified worker using a 0/1/2 rating scale
 - Rating 2 (Accept): item is marked complete
 - Rating 1 (Revise): reviewer implements a correction in bold; project lead accepts for Category A/B; original annotator gets one paid rebuttal round for Category C
 - Rating 0 (Reject): same rebuttal process as Category C
 - Unresolved conflicts: contested item may be dropped and replaced from the 20-item reserve pool; widespread disagreement triggers a third-reviewer arbitration round
-- QA runs on a rolling basis as submissions come in; the project closes once 100 approved Q&As are in the bank
+- QA runs on a rolling basis as submissions come in; the project closes once 100 approved Q&As are in the bank — 30 Category A, 30 Category B, and 40 Category C
 
 **Key documents:** `4_quality_control/`
 
@@ -72,7 +72,7 @@ A customer requested 100 Q&A pairs from SEC financial filings (10-K and 10-Q rep
 **Purpose:** Compile and return the final dataset to the customer.
 
 **How it works:**
-- The best 100 Q&As (by review rating) are selected from the approved pool
+- The first 100 top-rated Q&As that satisfy the 30/30/40 category split (30 Category A, 30 Category B, 40 Category C) are selected from the approved pool
 - Final dataset compiled into the agreed delivery format
 
 **Deliverable:** 100 Q&A pairs delivered to customer
@@ -86,7 +86,7 @@ A customer requested 100 Q&A pairs from SEC financial filings (10-K and 10-Q rep
 | Category A | Easy, single-document | 3 | 36 |
 | Category B | Medium, single-document | 3 | 36 |
 | Category C | Hard, multi-document | 4 | 48 |
-| **Total** | | **10** | **120 → deliver 100** |
+| **Total** | | **10** | **120 (max) → deliver 100** |
 
 ---
 
@@ -108,9 +108,9 @@ Workers self-report hours and are paid at $20/hour. Expected times per task are 
 | Category | Count | Expected time | Base pay | Bonus | Total |
 |----------|-------|---------------|----------|-------|-------|
 | Category A | 36 | ~15 min each | ~$180 | — | ~$180 |
-| Category B | 36 | ~20 min each | ~$240 | — | ~$240 |
+| Category B | 36 | ~20 min each | ~$240 | $2.50 × 36 = $90 | ~$330 |
 | Category C | 48 | ~25 min each | ~$400 | $5.00 × 48 = $240 | ~$640 |
-| **Review total** | | | **~$820** | **~$240** | **~$1,060** |
+| **Review total** | | | **~$820** | **~$330** | **~$1,150** |
 
 **Full budget range:**
 
@@ -118,9 +118,9 @@ Workers self-report hours and are paid at $20/hour. Expected times per task are 
 |-------|----------|-------------------------|
 | Qualification | ~$400 | ~$400 |
 | Annotation | ~$1,350 | ~$1,605 |
-| Review | ~$1,060 | ~$1,265 |
-| **Subtotal** | **~$2,810** | **~$3,270** |
-| +15% buffer | ~$420 | ~$490 |
-| **Total** | **~$3,230** | **~$3,760** |
+| Review | ~$1,150 | ~$1,355 |
+| **Subtotal** | **~$2,900** | **~$3,360** |
+| +15% buffer | ~$435 | ~$505 |
+| **Total** | **~$3,335** | **~$3,865** |
 
 Qualification cost is fixed regardless of worker pace. The high estimate is the recommended planning figure.
