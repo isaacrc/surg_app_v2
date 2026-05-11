@@ -1,0 +1,11 @@
+annotator_id,sector,question_category,question,answer,supporting_facts,additional_info,source_1_company,source_1_filing_type,source_1_filing_date,source_1_sec_url,source_1_pdf_filename,Rating (for reviewer),Explanation (for reviewer)
+,Financials,A,,,,,JPMorgan Chase,10-K,2026-02-18,https://www.google.com/search?q=site%3Asec.gov+%22JPMorgan+Chase%22+10-K+2026,JPMorgan_10K_2026.pdf,,
+,Financials,A,,,,,SoFi Technologies,10-Q,2025-11-05,https://www.google.com/search?q=site%3Asec.gov+%22SoFi+Technologies%22+10-Q+2025,SoFi_10Q_2025.pdf,,
+,Financials,A,,,,,Charles Schwab,10-K,2026-02-25,https://www.google.com/search?q=site%3Asec.gov+%22Charles+Schwab%22+10-K+2026,Schwab_10K_2026.pdf,,
+,Financials,B,,,,,JPMorgan Chase,10-K,2026-02-18,https://www.google.com/search?q=site%3Asec.gov+%22JPMorgan+Chase%22+10-K+2026,JPMorgan_10K_2026.pdf,,
+,Financials,B,,,,,SoFi Technologies,10-Q,2025-11-05,https://www.google.com/search?q=site%3Asec.gov+%22SoFi+Technologies%22+10-Q+2025,SoFi_10Q_2025.pdf,,
+,Financials,B,,,,,Charles Schwab,10-K,2026-02-25,https://www.google.com/search?q=site%3Asec.gov+%22Charles+Schwab%22+10-K+2026,Schwab_10K_2026.pdf,,
+,Financials,C,,,,,JPMorgan Chase,10-K,2026-02-18,https://www.google.com/search?q=site%3Asec.gov+%22JPMorgan+Chase%22+10-K+2026,JPMorgan_10K_2026.pdf,,
+,Financials,C,,,,,SoFi Technologies,10-Q,2025-11-05,https://www.google.com/search?q=site%3Asec.gov+%22SoFi+Technologies%22+10-Q+2025,SoFi_10Q_2025.pdf,,
+,Financials,C,,,,,Charles Schwab,10-K,2026-02-25,https://www.google.com/search?q=site%3Asec.gov+%22Charles+Schwab%22+10-K+2026,Schwab_10K_2026.pdf,,
+,Financials,C,,,,,JPMorgan Chase,10-K,2026-02-18,https://www.google.com/search?q=site%3Asec.gov+%22JPMorgan+Chase%22+10-K+2026,JPMorgan_10K_2026.pdf,,

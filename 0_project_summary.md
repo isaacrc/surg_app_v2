@@ -4,9 +4,9 @@
 
 ---
 
-A customer requested that we collect 100 Q&A pairs for SEC financial filings (10-K and 10-Q reports). This is a multi-step project — but have no fear! We'll walk through each step so the plan is easy to follow.
+A customer requested 100 Q&A pairs from SEC financial filings (10-K and 10-Q reports). We collect 120 to provide a buffer — rejected or contested items can be dropped and replaced without reopening collection. This is an open, self-paced project. Qualified workers on the platform claim individual tasks at their own pace, with no minimums, no deadlines, and no required pairings.
 
-Here's the big picture: first, we need to find expert annotators who actually know their way around a 10-K. Once we identify candidates, we test their qualifications to make sure they have the chops to construct rigorous Q&A pairs (see: `1_annotator_qualification/`). Once our experts are selected, we hand them the financial documents they'll be working from and they get to writing (see: `2_data_collection/`). Annotator assignment sheets — pre-filled CSVs with each annotator's companies, filing metadata, and submission template — are distributed from `3_annotator_data/`. Annotators return their completed CSVs and downloaded PDFs to the same folder. After they submit their Q&As, we review everything for errors and accuracy before returning the final dataset to the customer (see: `4_quality_control/`). This document gives a high-level overview of each step.
+Here's the big picture: first, we identify expert annotators who actually know their way around a 10-K. Once candidates pass qualification (see `1_annotator_qualification/`), they join the worker pool and can begin claiming tasks. Each task involves either writing a Q&A pair from a set of assigned financial documents, or reviewing a submitted Q&A pair. Twelve company sets are available, each represented by a pre-structured CSV in `3_annotator_data/`. Workers enter their own worker ID and complete as many tasks as they choose. Once sufficient Q&As are collected and reviewed, the final 100 are compiled and delivered to the customer (see `4_quality_control/`).
 
 ![Phase Summary](phase_summary.png)
 
@@ -14,86 +14,119 @@ Here's the big picture: first, we need to find expert annotators who actually kn
 
 ## Structure
 
-The client wants 100 Q&A pairs split into three categories — Category A, B, and C — which for simplicity we can think of as easy, medium, and hard respectively. Category A Q&As you can pull straight from the filing; Category B Q&As require a bit more digging (e.g., inferring something not directly stated); Category C Q&As require synthesizing information across multiple filings.
+The client wants 100 delivered Q&A pairs split into three categories — Category A, B, and C — which for simplicity we can think of as easy, medium, and hard. Category A Q&As can be pulled straight from a single filing; Category B Q&As require more digging (e.g., inferring something not directly stated or requiring calculation); Category C Q&As require synthesizing information across multiple filings.
 
-**How many annotators, and what do they produce?** We hire 10 annotators, each writing 10 Q&A pairs (3 Category A / 3 Category B / 4 Category C).
+**How are tasks organized?** The project uses 12 company sets, each covering 3 companies. Each set is its own task sheet (CSV) containing 10 Q&A slots: 3 Category A, 3 Category B, and 4 Category C. Workers can claim annotation or review tasks from any available set.
 
-**Which financial documents do annotators use?** Each annotator is assigned 3 companies, randomly selected without replacement from one of 5 sectors (Technology, Healthcare, Energy, Financials, Industrials). They are provided a 10-K or 10-Q for each company; filing type per company is randomly assigned.
+**Which sectors are covered?**
 
-**Do we allow redundancy across annotators?** Yes — for each sector, 3 companies are randomly sampled from a pool of 5 and assigned to an annotator. Some company overlap between the two annotators in a sector is likely but not guaranteed.
+| Sector | Sets |
+|--------|------|
+| Technology | 3 |
+| Healthcare | 2 |
+| Energy | 2 |
+| Financials | 3 |
+| Industrials | 2 |
+| **Total** | **12** |
+
+Technology and Financials are represented three times given their prevalence in SEC filings and the depth of available annotator expertise in these sectors.
+
+**Which financial documents do workers use?** Each company set includes a 10-K or 10-Q for each of its 3 companies; filing type per company is pre-assigned in the task sheet.
+
+**Why collect 120 when we need 100?** The 20-item buffer ensures contested or rejected Q&As can be dropped and replaced from the reserve without reopening the collection phase.
 
 ---
 
 ## Output Quantity
 
-| Category | Description | Per annotator | Total (10 annotators) |
-|----------|-------------|---------------|-----------------------|
-| Category A | Easy, single-document | 3 | 30 |
-| Category B | Medium, single-document | 3 | 30 |
-| Category C | Hard, multi-document | 4 | 40 |
-| **Total** | | **10** | **100** |
+| Category | Description | Per set | Collected (12 sets) |
+|----------|-------------|---------|---------------------|
+| Category A | Easy, single-document | 3 | 36 |
+| Category B | Medium, single-document | 3 | 36 |
+| Category C | Hard, multi-document | 4 | 48 |
+| **Total** | | **10** | **120 → deliver 100** |
 
 ---
 
-## Annotator Tasks
+## Worker Tasks
 
-Each annotator has two jobs — writing AND reviewing. Full details are in `2_data_collection/` and `4_quality_control/`.
+Each Q&A item has two independent parts. Workers can complete either or both, across as many company sets as they choose.
 
-- **Task 1:** Generate 10 Q&A pairs from assigned filings
-- **Task 2:** Blind peer review of their sector-paired counterpart's 10 submissions
+- **Part 1 — Annotate:** Write one Q&A pair from a company set's assigned filings. Full instructions in `2_data_collection/2.1_annotation_instructions.md`.
+- **Part 2 — Review:** Evaluate one submitted Q&A pair. Full instructions in `2_data_collection/2.2_review_instructions.md`.
+
+Review tasks become available once a corresponding annotation is submitted. Any qualified worker can claim any annotation or review task — there is no sector-based matching requirement.
 
 ---
 
 ## Quality Assurance
 
-We don't just trust the annotators blindly! Here's how we make sure the Q&As are actually good before they go to the customer.
+We don't just trust the annotators blindly! Here's how we ensure Q&As are accurate before delivering to the customer.
 
-- Blind peer review: each submission reviewed by the sector-paired annotator
+- Blind review: each submitted Q&A is reviewed by a different qualified worker
 - Rating scale: 0 (reject), 1 (revise), 2 (accept)
-- Payment contingent on passing review; $25 bonus for all 2s on first submission
+- For Rating 1: reviewer implements correction in bold; project lead accepts for Category A/B; rebuttal process applies for Category C and Rating 0
+- $5 bonus per Category C Q&A that passes review on first submission, to incentivize harder questions
+
+Full details in `4_quality_control/`.
 
 ---
 
 ## Qualification
 
-Not just anyone can do this — we need people who read 10-K/10-Qs for a living. Here's how we find and vet them. Full details in `1_annotator_qualification/`.
+Not just anyone can do this — we need people who read 10-K/10-Qs for a living. Full details in `1_annotator_qualification/`.
 
 - Targeted outreach to equity research analysts, finance PhDs, CFA charterholders, and former investment banking analysts through Surge's expert network
 - Paid ~60-minute qualification task; reviewed by project lead against clear pass/fail criteria
 
 ---
 
-## Budget & Timeline
+## Budget
 
-The bottom line — what this costs and how long it takes. Remaining work runs about 3 weeks from today, across four sequential phases.
+Workers self-report hours and are paid at $20/hour. Expected times per task are provided as guidance (see `2_data_collection/`). The expected estimate below uses those times as a baseline; the high estimate assumes workers take ~25% longer on average.
 
-**Total budget: ~$1,773 (including 15% buffer)**
+**Annotation (120 Q&As):**
 
-| Phase | Cost |
-|-------|------|
-| Qualification | ~$400 |
-| Data collection | ~$667 |
-| Quality assurance | ~$475 |
-| **Subtotal** | **~$1,542** |
-| +15% buffer | $231 |
-| **Suggested total** | **~$1,773** |
+| Category | Count | Expected time | Base pay (expected) |
+|----------|-------|---------------|---------------------|
+| Category A | 36 | ~10 min each | ~$120 |
+| Category B | 36 | ~15 min each | ~$180 |
+| Category C | 48 | ~20 min each | ~$320 |
+| **Subtotal** | | | **~$620** |
+| Category C bonuses ($5 × 48) | | | ~$240 |
+| **Annotation total** | | | **~$860** |
 
-**How we get there:**
+**Review (120 Q&As):**
 
-- **Qualification (~$400):** We recruit ~20 candidates and pay each $20 for a ~60-minute evaluation task.
+| Category | Count | Expected time | Pay (expected) |
+|----------|-------|---------------|----------------|
+| Category A | 36 | ~5 min each | ~$60 |
+| Category B | 36 | ~10 min each | ~$120 |
+| Category C | 48 | ~15 min each | ~$240 |
+| **Review total** | | | **~$420** |
 
-- **Data collection (~$667):** Each annotator is expected to spend about 3 hours 20 minutes on their 10 Q&As: 15 minutes orienting on each of their 3 documents, then 10 / 15 / 20 minutes per Category A / B / C question respectively. At $20/hour across 10 annotators, that's ~$667. If an annotator needs more time, they must submit a written note with their CSV specifying exactly what took longer and why. These claims will be reviewed.
+**Full budget range:**
 
-- **Quality assurance (~$475):** Peer review (Task 2) runs ~1.75 hours per annotator at $20/hour — $350 total. Reviewers are evaluating Q&As directly, not re-reading source documents. The time estimate breaks down as: 5 / 10 / 15 minutes per Category A / B / C Q&A reviewed (3 + 3 + 4 = 105 min = ~1.75 hours). Performance bonuses ($25 per annotator for all 10 Q&As rated 2 on first submission, estimated ~50% of annotators) add up to ~$125 (5 annotators × $25).
+| Phase | Expected | High (+25%) |
+|-------|----------|-------------|
+| Qualification | ~$400 | ~$400 |
+| Annotation | ~$860 | ~$1,015 |
+| Review | ~$420 | ~$525 |
+| **Subtotal** | **~$1,680** | **~$1,940** |
+| +15% buffer | ~$250 | ~$290 |
+| **Total** | **~$1,930** | **~$2,230** |
+
+Qualification cost is fixed regardless of worker pace. The high estimate is the recommended planning figure.
 
 ---
 
 ## Timeline
 
-| Phase | Days | Description |
-|-------|------|-------------|
-| Phase 1 — Qualification | Days 1–5 | Surge conducts targeted outreach to finance experts. Candidates complete a paid ~60-minute qualification task (evaluating 3 pre-written Q&As). The project lead reviews all submissions and selects the top 10 annotators. |
-| Phase 2 — Annotation | Days 6–10 | Qualified annotators receive their assignment CSVs and task instructions. They work asynchronously to produce 10 Q&A pairs each over 5 business days. A reminder email is sent at the midpoint (Day 8) to annotators who have not yet submitted, and again on the final day (Day 10). See `2.3_email_reminders.md` for draft emails. |
-| Phase 3 — Peer review / QA | Days 11–15 | Each annotator blind-reviews their sector-paired counterpart's 10 submissions over 5 business days. Ratings of 0 trigger revision requests back to the original annotator; ratings of 1 are corrected by the project lead. |
-| Phase 4 — Revisions & delivery | Days 16–18 | Any revised submissions are reviewed and finalized. Dataset is compiled and returned to the customer. |
+Phases 2 and 3 run concurrently — review tasks open as annotations are submitted, and QA runs on a rolling basis. There are no fixed deadlines; the project closes once 100 approved Q&As are in the bank.
 
+| Phase | Description |
+|-------|-------------|
+| Phase 1 — Qualification | Surge conducts targeted outreach to finance experts. Candidates complete a paid ~60-minute qualification task. The project lead reviews all submissions and admits qualified workers to the pool. |
+| Phase 2 — Annotation & Review | Tasks posted to the platform. Workers claim annotation and review tasks at their own pace. Review tasks become available as annotations are submitted. Both parts run concurrently. |
+| Phase 3 — QA & Revisions | Ongoing as submissions come in. Contested or rejected items enter the rebuttal/arbitration process. Project closes once 100 approved Q&As are collected. |
+| Phase 4 — Delivery | Final 100 Q&As compiled and returned to the customer. |
