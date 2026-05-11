@@ -38,12 +38,10 @@ A customer requested 100 Q&A pairs from SEC financial filings (10-K and 10-Q rep
 **Purpose:** Collect 120 Q&A pairs from qualified workers across 12 pre-structured task sets.
 
 **How it works:**
-- Twelve task sets are posted to the platform as open tasks; any qualified worker may claim any set
-- Each task set covers 3 companies (pre-assigned filings) and contains 10 Q&A slots: 3 Category A, 3 Category B, 4 Category C
+- We create 12 task sets, each spanning 3 companies within a target sector (Technology, Financials, etc.)
+- Each set contains 10 Q&A slots: 3 Category A (easy), 3 Category B (medium), 4 Category C (hard)
+- Task sets are posted as open tasks; any qualified worker may claim any set
 - Workers self-enter their worker ID and complete as many tasks as they choose — no minimums, no deadlines
-- For each set: workers write 1 Category A + 1 Category B Q&A per assigned company (6 total), plus 4 Category C Q&As drawing from any relevant filings
-- Review tasks open as soon as an annotation is submitted; any qualified worker may claim any review task
-- Annotation and review run concurrently until 120 Q&As are collected and reviewed
 
 **Key documents:** `2_data_collection/2.1_annotation_instructions.md`, `2_data_collection/2.2_review_instructions.md`, `3_annotator_data/`
 
