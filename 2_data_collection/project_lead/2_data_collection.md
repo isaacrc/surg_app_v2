@@ -2,7 +2,7 @@
 
 **Date:** April 2026
 
-**Purpose:** This document describes how the main data collection (120 Q&A pairs collected, 100 delivered) is structured, including document selection, task set design, workflow, expected data output schema, and collection budget. This is a reference document for the project lead; worker-facing instructions are in `2.1_annotation_instructions.md` and `2.2_review_instructions.md`.
+**Purpose:** This document describes how the main data collection (120 Q&A pairs collected, 100 delivered) is structured, including document selection, task set design, workflow, expected data output schema, and collection budget. This is a reference document for the project lead; worker-facing instructions are in `worker_facing/2.1_annotation_instructions.md` and `worker_facing/2.2_review_instructions.md`.
 
 **Goal:** Generate 120 Q&As from the qualified worker pool; deliver the best 100 to the customer.
 
@@ -87,11 +87,11 @@ For each of the 3 assigned companies:
 Plus, drawing on any relevant filings (including beyond the 3 provided in the task set):
 - 4 Category C Q&As
 
-Workers receive the pre-filled CSV for their claimed task set plus filing PDFs for the 3 assigned companies. Full instructions are in `2.1_annotation_instructions.md`.
+Task set CSVs are hosted in the shared Google Drive folder and edited directly by workers in Google Sheets — no file distribution required. Workers access filings via the `source_url` links pre-filled in each row. Full instructions are in `worker_facing/2.1_annotation_instructions.md`.
 
 **Per review task (one task set = 10 reviews):**
 
-Any qualified worker may claim the review for any completed annotation task. Workers receive the completed CSV plus all referenced filing PDFs. Full instructions are in `2.2_review_instructions.md`.
+Any qualified worker may claim the review for any completed annotation task. Workers access the completed CSV via the same Google Drive folder and verify claims using the `source_url` links. Full instructions are in `worker_facing/2.2_review_instructions.md`.
 
 ---
 
@@ -108,11 +108,11 @@ Each Q&A pair is recorded as one row in the task set CSV. Workers self-enter the
 | `answer` | Worker-entered answer |
 | `supporting_facts` | Worker-entered: source citations and evidence required to evaluate the answer without opening any filing |
 | `additional_info` | Optional: any context needed to evaluate the answer (industry conventions, non-standard definitions, etc.) |
-| `source_1_company` | Pre-filled: primary assigned company |
-| `source_1_filing_type` | Pre-filled: 10-K or 10-Q |
-| `source_1_filing_date` | Pre-filled: filing date |
-| `source_1_sec_url` | Pre-filled: Google search link to SEC EDGAR filing |
-| `source_1_pdf_filename` | Pre-filled: expected PDF filename |
+| `sources` | Pre-filled: company name(s); Cat A/B: one company; Cat C: all three companies in the task set |
+| `filing_type` | Pre-filled: 10-K or 10-Q; Cat C: comma-separated for all three companies |
+| `filing_date` | Pre-filled: filing date(s); Cat C: comma-separated for all three companies |
+| `source_url` | Pre-filled: Google search link to SEC EDGAR filing; Cat C: "see above" |
+| `time_spent` | Worker-entered: time spent on this row (e.g., "22 min") |
 | `Rating (for reviewer)` | Reviewer-entered: 0, 1, or 2 |
 | `Explanation (for reviewer)` | Reviewer-entered: rationale and bold corrections for any Rating 1 |
 
@@ -137,11 +137,11 @@ supporting_facts:     Source: Apple 10-K FY2024, pgs. 33, 35
                       Total revenue (FY2023): $383.3B (pg. 35)
                       Operating income (FY2023): $114.3B (pg. 35)
 additional_info:      [none]
-source_1_company:     Apple
-source_1_filing_type: 10-K
-source_1_filing_date: 2025-10-31
-source_1_sec_url:     https://www.google.com/search?q=site%3Asec.gov+%22Apple+Inc%22+10-K+2025
-source_1_pdf_filename: Apple_10K_2025.pdf
+sources:              Apple
+filing_type:          10-K
+filing_date:          2025-10-31
+source_url:           https://www.google.com/search?q=site%3Asec.gov+%22Apple+Inc%22+10-K+2025
+time_spent:           24 min
 ```
 
 ---
@@ -150,7 +150,7 @@ source_1_pdf_filename: Apple_10K_2025.pdf
 
 **Rate: $20/hour.** Workers self-report hours; expected times below are provided as guidance.
 
-Time estimates include document orientation (folded into per-question time). Category B annotation includes a $2.50 per-question bonus; Category C annotation includes a $5.00 per-question bonus; Category C review includes a $5.00 per-question bonus.
+Time estimates include document orientation (folded into per-question time). Annotation bonuses: Category B $2.50 per Q&A, Category C $5.00 per Q&A. Review bonuses: Category B $2.50 per review, Category C $5.00 per review. All bonuses are flat and unaffected by pace.
 
 **Annotation (120 Q&As across 12 task sets):**
 
@@ -166,9 +166,9 @@ Time estimates include document orientation (folded into per-question time). Cat
 | Category | Count | Time per review | Base pay | Bonuses | Total |
 |----------|-------|----------------|----------|---------|-------|
 | Category A | 36 | 15 min | ~$180 | — | ~$180 |
-| Category B | 36 | 20 min | ~$240 | — | ~$240 |
+| Category B | 36 | 20 min | ~$240 | $2.50 × 36 = $90 | ~$330 |
 | Category C | 48 | 25 min | ~$400 | $5.00 × 48 = $240 | ~$640 |
-| **Review total** | | | **~$820** | **~$240** | **~$1,060** |
+| **Review total** | | | **~$820** | **~$330** | **~$1,150** |
 
 The high estimate assumes workers take ~25% longer than the expected times. Bonuses are flat and not affected by pace.
 
@@ -177,5 +177,5 @@ The high estimate assumes workers take ~25% longer than the expected times. Bonu
 | Annotation base pay | ~$1,020 | ~$1,275 |
 | Annotation bonuses | ~$330 | ~$330 |
 | Review base pay | ~$820 | ~$1,025 |
-| Review bonuses | ~$240 | ~$240 |
-| **Total** | **~$2,410** | **~$2,870** |
+| Review bonuses | ~$330 | ~$330 |
+| **Total** | **~$2,500** | **~$2,960** |
