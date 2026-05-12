@@ -20,6 +20,22 @@ Reviewers now implement corrections directly in the Google Sheet row using bold 
 
 ---
 
+## Feedback Point 3 — Ensuring enough task count in collection
+
+> "Often when running a project, it's a good idea to over-collect a small amount of extra tasks such that removal of poor tasks won't require reopening another collection process. We'd suggest implementing this in your project based on your best intuition."
+
+Collection target was raised from 100 to 120 Q&As — a 20-item buffer (~20%). If a Q&A is rejected after the rebuttal process, or a conflict cannot be resolved in arbitration, the item can simply be dropped and replaced from the reserve pool without reopening collection. The buffer size was chosen to cover a realistic worst-case rejection rate given the expert annotator pool. This is reflected throughout the project: `0_project_summary.md` explains the 120/100 split upfront, and `3_quality_assurance.md` references the reserve pool explicitly in the arbitration step.
+
+---
+
+## Feedback Point 4 — No minimums, no deadlines; flexible task structure
+
+> "Workers do not have to submit any minimum number of tasks on the platform, nor do they have to adhere to any deadlines. They can work on tasks as they please and are not obligated to work on any project, even ones they passed qualifications for. You might want to explore other ways that you could achieve your target category and sector split that don't involve requiring workers to submit a set number of tasks in a CSV by a deadline."
+
+The fixed annotator assignment model — where each worker was responsible for completing a full set of 10 Q&As — was replaced with an open, per-row task pool. Workers claim individual rows at their own pace with no minimums and no deadlines. The target category split (30/30/40 across Category A, B, C) and sector diversity are preserved structurally rather than through worker obligations: each task set CSV is pre-populated with exactly 3 Category A, 3 Category B, and 4 Category C rows spanning a single sector, so the correct ratio holds as long as enough rows are completed across the pool — regardless of which workers complete them or how many each worker does. This is documented in `2_data_collection/project_lead/2_data_collection.md` and reflected in the worker-facing instructions in `2.1_annotation_instructions.md`.
+
+---
+
 ## v2 Structural Redesign
 
 ### Open self-paced task pool
