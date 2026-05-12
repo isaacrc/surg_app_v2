@@ -29,7 +29,7 @@ A customer requested 100 Q&A pairs from SEC financial filings (10-K and 10-Q rep
 - Each candidate completes a paid ~60-minute qualification task
 - The project lead reviews all submissions against clear pass/fail criteria and admits qualified workers to the pool
 
-**Key documents:** `1_annotator_qualification/`
+**Key documents:** `1_annotator_qualification/project_lead/1_qualification_project.md`, `1_annotator_qualification/worker_facing/1.1_qual_candidate_instructions.md`
 
 **Deliverable:** A pool of qualified workers cleared to claim annotation and review tasks
 
@@ -63,7 +63,7 @@ A customer requested 100 Q&A pairs from SEC financial filings (10-K and 10-Q rep
 - Unresolved conflicts: contested item may be dropped and replaced from the 20-item reserve pool; widespread disagreement triggers a third-reviewer arbitration round
 - QA runs on a rolling basis as submissions come in; the project closes once 100 approved Q&As are in the bank — 30 Category A, 30 Category B, and 40 Category C
 
-**Key documents:** `3_quality_control/`
+**Key documents:** `3_quality_control/3_quality_assurance.md`
 
 **Deliverable:** 100 approved Q&A pairs, ready for delivery
 
