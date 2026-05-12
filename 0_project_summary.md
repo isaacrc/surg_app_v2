@@ -74,7 +74,7 @@ A customer requested 100 Q&A pairs from SEC financial filings (10-K and 10-Q rep
 **Purpose:** Compile and return the final dataset to the customer.
 
 **How it works:**
-- The first 100 top-rated Q&As that satisfy the 30/30/40 category split (30 Category A, 30 Category B, 40 Category C) are selected from the approved pool
+- The first 100 top-rated Q&As that satisfy the 30/30/40 category split are selected from the approved pool
 - Final dataset compiled into the agreed delivery format
 
 **Deliverable:** 100 Q&A pairs delivered to customer
@@ -94,7 +94,7 @@ A customer requested 100 Q&A pairs from SEC financial filings (10-K and 10-Q rep
 
 ## Budget
 
-Workers self-report hours and are paid at $20/hour. Expected times per task are provided as guidance. The expected estimate uses those times as a baseline; the high estimate assumes workers take ~25% longer on average. Per-question bonuses are flat and unaffected by pace.
+Workers self-report hours and are paid at $20/hour. Expected times per task are provided as guidance. The expected estimate uses those times as a baseline; the high estimate assumes workers take ~25% longer on average. Per-question bonuses are earned on top of base pay regardless of time taken — Category B annotation earns $2.50 per Q&A, Category C annotation earns $5.00 per Q&A, and Category C review earns $5.00 per review. Bonuses are flat and unaffected by pace.
 
 **Annotation (120 Q&As):**
 
