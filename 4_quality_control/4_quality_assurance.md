@@ -6,121 +6,76 @@
 
 ## Overview
 
-All 100 submissions are reviewed before delivery. Quality assurance uses a single-reviewer blind peer review model, with sector-matched annotators reviewing each other's work. Payment to annotators is contingent on passing review.
+Every annotation row is reviewed before it enters the delivery pool. Review is open — any qualified worker may review any completed row across any task set. Review is per-row, not per-set: a worker picks any row where `question` and `answer` are filled in but `Rating (for reviewer)` is empty, and submits their review. Payment for both annotation and review is self-reported via the `time_spent` column at $20/hour base, with per-question bonuses for Category B and C work.
 
 ---
 
 ## Review Structure
 
-### Step 1: Blind Peer Review — all 100 submissions, 1 reviewer per submission
+### Step 1: Peer Review — per row, open to all qualified workers
 
-Reviewer assignments are made a priori, before annotation begins. Each annotator reviews the work of their sector-paired counterpart (the annotator assigned the same sector but different companies):
-
-| Cohort 1 | | Cohort 2 |
-|----------|---|----------|
-| Annotator 1 (Tech) | ↔ | Annotator 6 (Tech) |
-| Annotator 2 (Healthcare) | ↔ | Annotator 7 (Healthcare) |
-| Annotator 3 (Energy) | ↔ | Annotator 8 (Energy) |
-| Annotator 4 (Financials) | ↔ | Annotator 9 (Financials) |
-| Annotator 5 (Industrials) | ↔ | Annotator 10 (Industrials) |
-
-Because sector-paired annotators worked from similar company types, they have relevant domain knowledge for both easy/medium and hard (cross-company) questions.
-
-For each of the 10 submissions they receive, reviewers assign one of three ratings:
+A completed annotation row becomes available for review immediately. Reviewers access the task set CSVs via the shared Google Drive folder, find any unreviewed row, and assign one of three ratings:
 
 | Rating | Meaning |
 |--------|---------|
-| 2 — Accept | Factually accurate, self-contained, correct difficulty level, source cited, no PII |
+| 2 — Accept | Accurate, self-contained, correct difficulty level, no PII |
 | 1 — Revise | Minor fixable issue; reviewer implements correction directly in the record using bold text |
 | 0 — Reject | Factually wrong, not self-contained, or missing source |
 
-For any submission receiving a rating of 1, the reviewer must explain exactly why the submission is insufficient and implement their proposed correction directly in the record using **bold text**, so that the record — as edited — would be acceptable at a rating of 2. Written reasoning must accompany every edit.
+For any rating of 1, the reviewer must: (1) implement the correction directly in the CSV row using **bold text** for all changes, and (2) write a rationale in the `Explanation (for reviewer)` column explaining what was wrong and why the change was made. Full reviewer instructions are in `worker_facing/2.2_review_instructions.md`.
 
 ### Step 2: Internal Review
 
-Once all 10 submissions have been reviewed and returned, the project lead processes the ratings and edits as follows.
+The project lead processes submitted ratings as follows.
 
-**Rating 2 — Accept:** There is agreement between the annotator's submission and the review standard. No further action is required; the annotator is paid and the item is marked complete.
+**Rating 2 — Accept:** No further action required. The row is marked complete and the annotator is paid.
 
-**Rating 1, Category A/B — Apply correction:** Easy and Medium questions involve verifiable facts — page citations, arithmetic, source identification — where a clear right answer exists. The project lead reviews the reviewer's bold edits and, if satisfied, accepts them. The annotator is paid. No further review round is needed.
+**Rating 1, Category A/B — Apply correction:** Easy and Medium questions involve verifiable facts — page citations, arithmetic, metric identification — where a clear right answer exists. The project lead reviews the reviewer's bold edits and, if satisfied, accepts them. The annotator is paid; no further review round is needed.
 
-**Rating 1, Category C — Rebuttal process:** Hard questions involve cross-document synthesis, where two finance-literate reviewers may reasonably interpret filings differently. The proposed correction is sent to the original annotator, who may either accept it or provide a counter-argument supported by specific evidence from the cited filings — one round of response only. The project lead reviews both arguments and makes a final call.
+**Rating 1, Category C — Rebuttal process:** Hard questions involve cross-document synthesis, where two qualified reviewers may reasonably interpret filings differently. The proposed correction is returned to the original annotator, who may either accept it or provide a counter-argument supported by specific evidence from the cited filings — one round of response only. The project lead reviews both arguments and makes a final call.
 
-**Rating 0 — Reject:** Rejections are expected to be rare, as annotators are experienced professionals. If a submission receives a 0, the same rebuttal process applies as Category C: the item is returned to the original annotator with the reviewer's full reasoning, and the annotator may amend their submission or rebut the critique.
+**Rating 0 — Reject:** Rejections are expected to be rare, as annotators are experienced professionals. The same rebuttal process applies as Category C: the row is returned to the annotator with the reviewer's full reasoning, and the annotator may amend their submission or rebut the critique.
 
 ### Step 3: Arbitration
 
-If conflict persists after the first round — that is, the original annotator disagrees with the review and does not accept the proposed change, whether the rating was 0 or 1 — the project lead determines the next step. Because a small buffer of extra tasks was collected, a contested item may simply be dropped and replaced with a task from the reserve pool, avoiding the need for further adjudication.
+If conflict persists after the first rebuttal round — the annotator disagrees with the review and does not accept the proposed change — the project lead determines the next step. Because 20 extra rows were collected as a buffer, a contested item may simply be dropped and replaced from the reserve pool, avoiding further adjudication.
 
-If disagreement is widespread across multiple Q&A items, the project lead will initiate a second arbitration round. Both arguments are forwarded to a third reviewer already in the pool, selected from an uninvolved sector pair. That reviewer votes on whether the annotator's or the reviewer's reasoning is most valid, and their decision is adopted.
+If disagreement is widespread across multiple rows, the project lead will initiate a second arbitration round. Both arguments are forwarded to a third qualified worker, selected from outside the original annotation-review pair. That worker votes on whether the annotator's or the reviewer's reasoning is most valid, and their decision is adopted.
 
 ---
 
-## Reviewer Instructions
+## Review Checklist (Project Lead Reference)
 
-Reviewers must check each Q&A against the following criteria:
+The full review checklist is in `worker_facing/2.2_review_instructions.md`. In brief, reviewers check:
 
-- **Self-containedness:** does the Supporting Facts section meet the standard for its category?
-  - *Easy:* source citation with page number present
-  - *Medium:* all calculation inputs provided with page numbers
-  - *Hard:* each company-level claim has a cited fact or quoted language with filing and page; absent disclosures documented with where the reviewer looked
-
-- **Accuracy:**
-  - *Easy:* open the cited page and verify the fact is stated in the filing as the answer claims
-  - *Medium:* independently run the calculations using the Supporting Facts values; flag if the result doesn't match the answer, or if a metric is misidentified (e.g., gross profit used instead of operating income)
-  - *Hard:* confirm all cited filings are real and from October 2023 or newer; evaluate whether the overall synthesis is logically supported by the evidence cited; flag if an absent disclosure is not documented, a conclusion overstates what the evidence supports, or a causal/comparative claim is not logically justified
-
-- **Correct difficulty level:** does this match Category A / B / C as labeled?
-- **PII:** flag and anonymize any personal names, contact information, or identifying details
-
-For any rating of 1, the reviewer must: (1) explain exactly why the submission is insufficient, (2) implement a correction directly in the record using **bold text** for all changes, and (3) provide a written rationale. See [2.1 — Revising the Submission](../2_data_collection/2.1_worker_facing_instructions.md#revising-the-submission) for the full revision process.
+- **Self-containedness** — Supporting Facts meets the standard for its category: page citation for Easy; all calculation inputs with page numbers for Medium; per-company cited facts or quoted language with filing and page for Hard, with absent disclosures documented
+- **Accuracy** — facts confirmed against the cited filing; calculations verified using Supporting Facts values; synthesis logically supported by cited evidence
+- **Difficulty level** — Q&A matches its Category A / B / C label
+- **PII** — no personal names, contact info, or identifying details
 
 ---
 
 ## Consistency
 
-The rubric above serves as the primary consistency mechanism. Reviewers are already finance-literate (they passed the same qualification screen as annotators) and will have just completed the annotation task themselves, giving them practical intuition for the quality bar.
-
----
-
-## Performance Bonus
-
-Any annotator whose all 10 Q&As receive a rating of 2 on first submission earns a $25 bonus. This incentivizes high-quality first submissions and reduces revision load.
+The shared rubric in `worker_facing/2.2_review_instructions.md` serves as the primary consistency mechanism. All reviewers passed the same qualification screen as annotators and are familiar with SEC filing structure, providing a consistent baseline for judgment.
 
 ---
 
 ## QA Budget
 
-**Rate: $20/hour**
+Review pay: **$20/hour** base, self-reported via `time_spent`. Per-question bonuses for Category B and C reviews.
 
-| Phase | What this covers | Workers | Hrs | Cost |
-|-------|-----------------|---------|-----|------|
-| Peer review | Each annotator reviews their sector-paired counterpart's 10 Q&As | 10 | 17.5 | $350 |
-| Performance bonuses | $25 per annotator with all 10 Q&As rated 2 on first submission (est. ~50% qualify = 5 of 10) | — | — | ~$125 |
-| **Subtotal** | | | **17.5** | **~$475** |
+| Category | Count | Time per review | Base pay | Bonuses | Total |
+|----------|-------|----------------|----------|---------|-------|
+| Category A | 36 | ~15 min | ~$180 | — | ~$180 |
+| Category B | 36 | ~20 min | ~$240 | $2.50 × 36 = $90 | ~$330 |
+| Category C | 48 | ~25 min | ~$400 | $5.00 × 48 = $240 | ~$640 |
+| **Review total** | | | **~$820** | **~$330** | **~$1,150** |
 
-**Estimated time per reviewer:**
+The high estimate assumes workers take ~25% longer than expected. Bonuses are flat and unaffected by pace.
 
-| Category | Calculation | Time |
-|----------|-------------|------|
-| Category A | 3 × 5 min | 15 min |
-| Category B | 3 × 10 min | 30 min |
-| Category C | 4 × 15 min | 60 min |
-| **Total** | | **1.75 hrs → $35/reviewer** |
-
-**Timeline:**
-- QA review: 3–5 days
-- Revisions & delivery: 2–3 days
-
----
-
-## Full Project Budget Summary
-
-| Phase | Cost |
-|-------|------|
-| Qualification | ~$400 |
-| Data collection | ~$667 |
-| Quality assurance | ~$475 |
-| **Subtotal** | **~$1,542** |
-| +15% buffer | $231 |
-| **Suggested total** | **~$1,773** |
+| | Expected | High (+25%) |
+|--|----------|-------------|
+| Review base pay | ~$820 | ~$1,025 |
+| Review bonuses | ~$330 | ~$330 |
+| **Total** | **~$1,150** | **~$1,355** |
