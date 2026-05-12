@@ -91,7 +91,7 @@ Workers receive the pre-filled CSV for their claimed task set plus filing PDFs f
 
 **Per review task (one task set = 10 reviews):**
 
-Any qualified worker may claim the review for any completed annotation task — there is no sector-matching requirement. Workers receive the completed CSV plus all referenced filing PDFs. Full instructions are in `2.2_review_instructions.md`.
+Any qualified worker may claim the review for any completed annotation task. Workers receive the completed CSV plus all referenced filing PDFs. Full instructions are in `2.2_review_instructions.md`.
 
 ---
 
