@@ -14,7 +14,7 @@ Every annotation row is reviewed before it enters the delivery pool. Review is o
 
 ### Step 1: Peer Review — per row, open to all qualified workers
 
-A completed annotation row becomes available for review immediately. Reviewers access the task set CSVs via the shared Google Drive folder, find any unreviewed row, and assign one of three ratings:
+A completed annotation row becomes available for review immediately. Reviewers open any task set CSV via the shared Google Drive folder, find any row where `question` and `answer` are filled in but `Rating (for reviewer)` is empty, and assign one of three ratings:
 
 | Rating | Meaning |
 |--------|---------|
@@ -22,7 +22,7 @@ A completed annotation row becomes available for review immediately. Reviewers a
 | 1 — Revise | Minor fixable issue; reviewer implements correction directly in the record using bold text |
 | 0 — Reject | Factually wrong, not self-contained, or missing source |
 
-For any rating of 1, the reviewer must: (1) implement the correction directly in the CSV row using **bold text** for all changes, and (2) write a rationale in the `Explanation (for reviewer)` column explaining what was wrong and why the change was made. Full reviewer instructions are in `worker_facing/2.2_review_instructions.md`.
+For any rating of 1, the reviewer must: (1) implement the correction directly in the CSV row using **bold text** for all changes, and (2) write a rationale in the `Explanation (for reviewer)` column explaining what was wrong and why the change was made. Full reviewer instructions are in `../2_data_collection/worker_facing/2.2_review_instructions.md`.
 
 ### Step 2: Internal Review
 
@@ -40,7 +40,7 @@ The project lead processes submitted ratings as follows.
 
 If conflict persists after the first rebuttal round — the annotator disagrees with the review and does not accept the proposed change — the project lead determines the next step. Because 20 extra rows were collected as a buffer, a contested item may simply be dropped and replaced from the reserve pool, avoiding further adjudication.
 
-If disagreement is widespread across multiple rows, the project lead will initiate a second arbitration round. Both arguments are forwarded to a third qualified worker, selected from outside the original annotation-review pair. That worker votes on whether the annotator's or the reviewer's reasoning is most valid, and their decision is adopted.
+If disagreement is widespread across multiple rows, the project lead will initiate a second arbitration round. Both arguments are forwarded to a third qualified worker not involved in the original annotation or review of that row. That worker votes on whether the annotator's or the reviewer's reasoning is most valid, and their decision is adopted.
 
 ---
 
@@ -57,7 +57,7 @@ The full review checklist is in `worker_facing/2.2_review_instructions.md`. In b
 
 ## Consistency
 
-The shared rubric in `worker_facing/2.2_review_instructions.md` serves as the primary consistency mechanism. All reviewers passed the same qualification screen as annotators and are familiar with SEC filing structure, providing a consistent baseline for judgment.
+The shared rubric in `../2_data_collection/worker_facing/2.2_review_instructions.md` serves as the primary consistency mechanism. All reviewers passed the same qualification screen as annotators and are familiar with SEC filing structure, providing a consistent baseline for judgment.
 
 ---
 
