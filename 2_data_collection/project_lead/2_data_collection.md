@@ -159,7 +159,7 @@ Time estimates include document orientation (folded into per-question time). Ann
 | Category C | 48 | 25 min | ~$400 | $5.00 × 48 = $240 | ~$640 |
 | **Review total** | | | **~$820** | **~$330** | **~$1,150** |
 
-The high estimate assumes workers take ~25% longer than the expected times. Bonuses are flat and not affected by pace.
+The high estimate assumes workers take ~25% longer than the expected times. 
 
 | | Expected | High (+25%) |
 |--|----------|-------------|
