@@ -76,7 +76,7 @@ Companies were drawn from the sector pools to create meaningful overlap across s
 
 ## Workflow
 
-The 12 task set CSVs are hosted in a shared Google Drive folder and edited directly in Google Sheets. Each row in a CSV is one task — annotation or review. Workers complete as many rows as they choose across any CSV, at their own pace.
+The 12 task set CSVs are hosted in a shared [Google Drive](https://drive.google.com/drive/folders/1Z7sXh9cIrBew4_BdCmfhGMAL_Fi2LDF9?usp=drive_link) folder and edited directly in Google Sheets. Each row in a CSV is one task — annotation or review. Workers complete as many rows as they choose across any CSV, at their own pace.
 
 **Annotation:** a worker opens any CSV, picks any row where `question` and `answer` are empty, and writes the Q&A for that row. Each CSV contains 10 rows: 3 Category A (one per company), 3 Category B (one per company), and 4 Category C (drawing on any relevant filings, including beyond the 3 in the CSV). Each row is pre-filled with the company, filing type, filing date, and `source_url` — workers use these to access the relevant SEC filing and write their Q&A. Full instructions are in `worker_facing/2.1_annotation_instructions.md`.
 
