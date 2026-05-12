@@ -1,6 +1,6 @@
 # Revision Notes
 
-Tracking changes made in response to reviewer feedback.
+High-level summary of all changes made in v2, organized by reviewer feedback and structural redesign.
 
 ---
 
@@ -8,19 +8,7 @@ Tracking changes made in response to reviewer feedback.
 
 > "Where applicable, it's useful to separate components like supporting facts from final answers, rather than blending things together. Keeping things modular helps with flexibility downstream."
 
-### Changes
-
-**`2_data_collection/2.1_worker_facing_instructions.md`**
-- Added a dedicated `## Supporting Facts` section, placed between the difficulty-level task examples and `## Getting Started`. This section opens with an explanation of the component's purpose, then details the per-category requirements (Easy / Medium / Hard).
-- Condensed Quality Standards item 2 ("Self-contained answers with Supporting Facts") to a single cross-reference pointing to the new section, removing the duplicated per-category detail.
-
-**`3_quality_control/3_quality_assurance.md`**
-- Updated the reviewer self-containedness criterion from a vague one-liner to an explicit reference: "are the Supporting Facts sufficient — per the criteria in 2.1 — for a finance-literate reader to evaluate the submission without opening any filing?"
-
-**`3_annotator_data/A01_technology.csv` — `A10_industrials.csv` (all 10 files)**
-- Added a `supporting_facts` free-text column between `answer` and `additional_info` in all annotator submission CSVs, making Supporting Facts a structurally distinct field rather than a component embedded within the answer.
-
----
+`supporting_facts` is now a structurally distinct column in the CSV schema, separate from `answer` and `additional_info`. The annotation instructions include a dedicated Supporting Facts section with explicit per-category requirements: page citation only for Easy; all calculation inputs with page numbers for Medium; per-company cited facts or quoted language with filing and page for Hard, with absent disclosures documented. The `additional_info` column is also explained as its own distinct field — evidence vs. context.
 
 ---
 
@@ -28,82 +16,42 @@ Tracking changes made in response to reviewer feedback.
 
 > "We like your idea to allow edits to tasks that contain fixable issues and we would like to see some more detail around this process, including whether reviewers have the ability to make edits in order to save on time."
 
-### Changes
-
-**`2_data_collection/2.1_worker_facing_instructions.md`**
-- Expanded the Rating 1 paragraph into a full `### Revising the Submission` subsection in Task 2.
-- Reviewers must: (1) explain why the submission is insufficient, (2) implement a correction directly in the record using bold text, (3) provide written rationale.
-- Category A/B: reviewer edits go to project lead for acceptance — clear factual issues with a verifiable right answer.
-- Category C: reviewer edits are sent to the original annotator for one paid round of response before the project lead decides — synthesis questions are interpretive and the original annotator may have spent more time on the specific filings.
-- Added that reviewers receive all referenced documents (including extra Cat C filings) to verify claims directly.
-
-**`3_quality_control/3_quality_assurance.md`**
-- Removed Annotator Notice section (redundant with Overview).
-- Restructured Review Structure section: removed the separate Rating Scale and Disposition Logic tables; replaced with prose paragraphs describing Rating 2, Rating 0, Rating 1 Cat A/B, and Rating 1 Cat C (rebuttal + arbitration by third reviewer) flows.
-- Added arbitration mechanism for Cat C disputes the project lead cannot resolve: both arguments forwarded to a third uninvolved reviewer for a binding vote.
-- Moved "Estimated time per reviewer" table to the QA Budget section.
-- Removed the sentence about reviewers receiving all referenced documents from Review Structure (document access info now lives in 2.1 Factual accuracy bullet).
-- Updated reviewer instructions paragraph to reference 2.1 for the full revision process.
-
-**`2_data_collection/2.1_worker_facing_instructions.md`**
-- Added rebuttal/payment notice to the opening payment paragraph: annotators informed they may be contacted for a rebuttal on Rating 1 items and will be paid for that time.
-- Removed "You will not know whose work you are reviewing." (unnecessary).
-- Folded document access info into the Factual accuracy bullet in the review checklist.
-- Removed the "The process then differs by category" block from Revising the Submission — reviewers do not need to know internal disposition details.
+Reviewers now implement corrections directly in the Google Sheet row using bold text — no back-and-forth with the annotator for Easy and Medium items. Those corrections go straight to the project lead to accept, keeping the process fast for the common case. Hard questions are treated differently: an annotator may reasonably disagree with a reviewer's interpretation of cross-document synthesis, so they receive one paid rebuttal round before the project lead makes a final call. Anything still unresolved after that goes to a third-reviewer arbitration step. A concrete Rating 1 example was added to the reviewer instructions so the correction format is easy to follow in practice.
 
 ---
 
----
+## v2 Structural Redesign
 
-## Additional revisions (feedback pt. 2 cont. + structural cleanup)
+### Open self-paced task pool
 
-**`3_annotator_data/A01–A10` (all 10 CSVs)**
-- Removed source_2 and source_3 column sets (source info for additional filings now captured in supporting_facts).
-- Removed source_4_plus_notes column.
-- Added `rating` and `explanation` columns for reviewer use.
-- Final schema: annotator_id, sector, question_category, question, answer, supporting_facts, additional_info, source_1_company, source_1_filing_type, source_1_filing_date, source_1_sec_url, source_1_pdf_filename, rating, explanation.
+The fixed annotator assignment model (one annotator per set of 10) was replaced with an open, per-row task pool. Each row in a task set CSV is one claimable task — annotation or review. Any qualified worker may pick up any unclaimed row across any CSV at their own pace, with no minimums and no deadlines. Workers self-enter their annotator ID when they take a row.
 
-**`2_data_collection/2.1_worker_facing_instructions.md`**
-- Added anchor links and a "Jump to" nav bar in "Your Tasks at a Glance".
-- Updated rating table to 3 columns: Meaning + Rating 1 examples (non-exhaustive), with per-category examples for Cat A/B/C.
-- Expanded Hard Q&A review bullet to include: verify each company-level claim has a Supporting Facts entry; evaluate whether synthesis is logically supported.
-- Updated deliverables list to reference supporting_facts column; replaced source_4_plus_notes reference with supporting_facts citations.
-- Added "Example Reviewed Rows" subsection after Revising the Submission, showing a Rating 2 and Rating 1 example row.
+### CSV schema overhaul
 
-**`3_quality_control/3_quality_assurance.md`**
-- Added Step 1 / Step 2 / Step 3 headers within Review Structure.
-- Updated rating table to match 2.1 (3 columns with per-category Rating 1 examples).
-- Expanded Category C reviewer instruction to match updated Hard Q&A bullet in 2.1.
+The source columns were consolidated from a multi-column structure into four fields: `sources`, `filing_type`, `filing_date`, `source_url`. For Category C rows, all three companies in the task set are listed comma-separated across those fields; `source_url` reads "see above." A `time_spent` column was added for per-row payment tracking. The PDF filename column was removed — workers download filings for their own reference but are not required to upload anything.
 
----
+### Review model
 
----
+Sector-paired blind reviewer assignment was removed. Review is now open: any qualified worker reviews any completed row. Category B reviews now earn a $2.50 per-row bonus (matching the annotation bonus). The v1 performance bonus ($25 for all 10 Q&As rated 2 on first submission) was removed — it doesn't apply to the per-row model.
 
-## Additional revisions (reviewer checklist restructure)
+### Google Drive / Google Sheets workflow
 
-**`2_data_collection/2.1_worker_facing_instructions.md` and `3_quality_control/3_quality_assurance.md`**
-- Removed "Factual accuracy" top-level bullet and category-specific "For Medium / For Hard Q&As" bullets.
-- Replaced with two explicit parallel sections: **Self-Containedness** (is the required evidence present?) and **Accuracy** (is what's present correct?), each with per-category sub-bullets.
-- Easy accuracy check is the one place reviewers are expected to open the source document; Medium and Hard accuracy checks run from Supporting Facts alone.
-- Rating table condensed back to 2 columns in both docs; examples now live in the checklist where they're actionable.
-- Added document access notice as intro sentence to 2.1 reviewer checklist.
+Task set CSVs are hosted on Google Drive and edited directly in Google Sheets. The `3_annotator_data/` directory was removed from the git repo and added to `.gitignore`; the live task sets live on Drive.
 
-**`3_annotator_data/A01–A10` (all 10 CSVs)**
-- Renamed `rating` → `Rating (for reviewer)` and `explanation` → `Explanation (for reviewer)` to avoid annotator confusion.
+### Directory restructure
 
----
+`worker_facing/` and `project_lead/` subdirectories were added to both `1_annotator_qualification/` and `2_data_collection/`, separating worker-facing documents from internal ones. `4_quality_control/` was renumbered to `3_quality_control/` and `4_quality_assurance.md` to `3_quality_assurance.md`. READMEs were removed from `1_annotator_qualification/` and `3_quality_control/`.
 
----
+### Document updates
 
-## Additional revisions (Step 2/3 rewrite, checklist cleanup)
+**`0_project_summary.md`** — Budget updated to include Category B review bonus; timeline section added (~6 weeks total); file path references updated to reflect new directory structure; PNG reference corrected.
 
-**`3_quality_control/3_quality_assurance.md`**
-- Step 2: Reordered disposition paragraphs — Rating 2, Rating 1 A/B, Rating 1 C, Rating 0 (rating 0 moved to end; rejections expected to be rare; now follows same rebuttal process as Cat C).
-- Step 3: Rewrote arbitration section — persistent conflict (annotator rejects change after first round, for rating 0 or 1) goes to project lead; contested item may be dropped from final 100 and replaced from reserve pool; if conflict is widespread, second arbitration round initiated with third reviewer from uninvolved sector pair voting on which argument is most valid.
-- Accuracy Hard bullet: removed "flag if a filing is too old or unverifiable" (redundant with the filing date confirmation already in that bullet).
-- Removed "Source citation" standalone bullet (redundant with self-containedness and accuracy checks).
-- Added hyperlink to 2.1 — Revising the Submission on the "See 2.1" reference.
+**`1_annotator_qualification/worker_facing/1.1_qual_candidate_instructions.md`** — Overview updated with a project description and casual tone matching 2.1, without revealing that the qualification Q&As contain flaws.
 
----
+**`2_data_collection/worker_facing/2.1_annotation_instructions.md`** — Full rewrite: Hello opening, LLM fine-tuning context, per-row Getting Started steps, Google Drive link, updated pay table with per-row bonuses, `additional_info` section, sample completed record.
 
-*Remaining feedback points to be addressed: 3, 4*
+**`2_data_collection/worker_facing/2.2_review_instructions.md`** — Full rewrite: Hello opening, LLM fine-tuning context, per-row Getting Started steps, merged step 2+3, Rating 1 correction example, updated pay table.
+
+**`2_data_collection/project_lead/2_data_collection.md`** — Workflow section rewritten to frame each row (not each set) as the unit of work; Google Drive hyperlink added.
+
+**`3_quality_control/3_quality_assurance.md`** — Full rewrite: open per-row review model, sector-pairing removed, updated disposition logic, updated budget with Category B review bonus, corrected file path references.
