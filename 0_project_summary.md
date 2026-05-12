@@ -35,7 +35,7 @@ A customer requested 100 Q&A pairs from SEC financial filings (10-K and 10-Q rep
 
 ---
 
-## Phase 2 — Annotation & Review
+## Phase 2 — Annotation
 
 **Purpose:** Collect 120 Q&A pairs from qualified workers across 12 pre-structured task sets.
 
