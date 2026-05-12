@@ -2,7 +2,7 @@
 
 **Date:** April 2026
 
-![Phase Summary](phase_summary_2.png)
+![Phase Summary](phase_summary.png)
 
 ---
 
@@ -126,3 +126,17 @@ Workers self-report hours and are paid at $20/hour. Expected times per task are 
 | **Total** | **~$3,335** | **~$3,865** |
 
 Qualification cost is fixed regardless of worker pace. The high estimate is the recommended planning figure.
+
+---
+
+## Timeline
+
+Phases 2 and 3 overlap — QA runs on a rolling basis as annotation rows come in.
+
+| Phase | Duration | Cumulative |
+|-------|----------|------------|
+| Phase 1 — Qualification | ~2 weeks | Weeks 1–2 |
+| Phase 2 — Annotation & Review | ~3 weeks | Weeks 3–5 |
+| Phase 3 — QA & Revisions | overlaps Phase 2; ~1 week tail | Weeks 3–6 |
+| Phase 4 — Delivery | ~3 days | Week 6 |
+| **Total** | **~6 weeks** | |
