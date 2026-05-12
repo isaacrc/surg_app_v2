@@ -45,7 +45,7 @@ A customer requested 100 Q&A pairs from SEC financial filings (10-K and 10-Q rep
 - Task sets are posted as open tasks; any qualified worker may claim any set
 - Workers self-enter their worker ID and complete as many tasks as they choose
 
-**Key documents:** `2_data_collection/2.1_annotation_instructions.md`, `2_data_collection/2.2_review_instructions.md`, `3_annotator_data/`
+**Key documents:** `2_data_collection/worker_facing/2.1_annotation_instructions.md`, `2_data_collection/worker_facing/2.2_review_instructions.md`
 
 **Deliverable:** 12 completed and reviewed task-set CSVs (120 Q&A pairs: 36 Category A, 36 Category B, 48 Category C)
 
@@ -63,7 +63,7 @@ A customer requested 100 Q&A pairs from SEC financial filings (10-K and 10-Q rep
 - Unresolved conflicts: contested item may be dropped and replaced from the 20-item reserve pool; widespread disagreement triggers a third-reviewer arbitration round
 - QA runs on a rolling basis as submissions come in; the project closes once 100 approved Q&As are in the bank — 30 Category A, 30 Category B, and 40 Category C
 
-**Key documents:** `4_quality_control/`
+**Key documents:** `3_quality_control/`
 
 **Deliverable:** 100 approved Q&A pairs, ready for delivery
 
