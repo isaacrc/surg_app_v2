@@ -76,22 +76,11 @@ Companies were drawn from the sector pools to create meaningful overlap across s
 
 ## Workflow
 
-Task sets are posted to the platform as open tasks. Qualified workers claim annotation and review tasks at their own pace. Review tasks for a given set become available once the annotation for that set is submitted.
+The 12 task set CSVs are hosted in a shared Google Drive folder and edited directly in Google Sheets. Each row in a CSV is one task — annotation or review. Workers complete as many rows as they choose across any CSV, at their own pace.
 
-**Per annotation task (one task set = 10 Q&As):**
+**Annotation:** a worker opens any CSV, picks any row where `question` and `answer` are empty, and writes the Q&A for that row. Each CSV contains 10 rows: 3 Category A (one per company), 3 Category B (one per company), and 4 Category C (drawing on any relevant filings, including beyond the 3 in the CSV). Each row is pre-filled with the company, filing type, filing date, and `source_url` — workers use these to access the relevant SEC filing and write their Q&A. Full instructions are in `worker_facing/2.1_annotation_instructions.md`.
 
-For each of the 3 assigned companies:
-- 1 Category A Q&A
-- 1 Category B Q&A
-
-Plus, drawing on any relevant filings (including beyond the 3 provided in the task set):
-- 4 Category C Q&As
-
-Task set CSVs are hosted in the shared Google Drive folder and edited directly by workers in Google Sheets — no file distribution required. Workers access filings via the `source_url` links pre-filled in each row. Full instructions are in `worker_facing/2.1_annotation_instructions.md`.
-
-**Per review task (one task set = 10 reviews):**
-
-Any qualified worker may claim the review for any completed annotation task. Workers access the completed CSV via the same Google Drive folder and verify claims using the `source_url` links. Full instructions are in `worker_facing/2.2_review_instructions.md`.
+**Review:** a review task is also per-row. As soon as an annotation row is submitted, its review becomes available. Any qualified worker may review any completed row — they open the same Google Drive CSV, find any row where `question` and `answer` are filled in but `Rating (for reviewer)` is empty, and complete the review. Full instructions are in `worker_facing/2.2_review_instructions.md`.
 
 ---
 
