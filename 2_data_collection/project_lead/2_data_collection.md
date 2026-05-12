@@ -12,7 +12,7 @@
 
 ### Sectors
 
-Five sectors were selected for maximum diversity in financial reporting structure, risk profile, and industry terminology. Technology and Financials appear three times each given their prevalence in SEC filings and depth of available annotator expertise.
+Five sectors were selected for maximum diversity in financial reporting structure, risk profile, and industry terminology. Technology and Financials appear three times each given their prevalence in SEC filings.
 
 | Sector | Task Sets |
 |--------|-----------|
@@ -76,7 +76,7 @@ Companies were drawn from the sector pools to create meaningful overlap across s
 
 ## Workflow
 
-Task sets are posted to the platform as open tasks. Qualified workers claim annotation and review tasks at their own pace, with no deadlines and no minimums. Review tasks for a given set become available once the annotation for that set is submitted.
+Task sets are posted to the platform as open tasks. Qualified workers claim annotation and review tasks at their own pace. Review tasks for a given set become available once the annotation for that set is submitted.
 
 **Per annotation task (one task set = 10 Q&As):**
 
