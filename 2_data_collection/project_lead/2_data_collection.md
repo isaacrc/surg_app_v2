@@ -78,18 +78,18 @@ Companies were drawn from the sector pools to create meaningful overlap across s
 
 Task sets are posted to the platform as open tasks. Qualified workers claim annotation and review tasks at their own pace. Review tasks for a given set become available once the annotation for that set is submitted.
 
-**Per annotation task (one task set = 10 Q&As):**
+**Per annotation set (one set = 10 Q&As):**
 
 For each of the 3 assigned companies:
 - 1 Category A Q&A
 - 1 Category B Q&A
 
-Plus, drawing on any relevant filings (including beyond the 3 provided in the task set):
+Plus, drawing on any relevant filings (including beyond the 3 provided in the annotation set):
 - 4 Category C Q&As
 
 Task set CSVs are hosted in the shared Google Drive folder and edited directly by workers in Google Sheets — no file distribution required. Workers access filings via the `source_url` links pre-filled in each row. Full instructions are in `worker_facing/2.1_annotation_instructions.md`.
 
-**Per review task (one task set = 10 reviews):**
+**Per review  (one set = 10 reviews):**
 
 Any qualified worker may claim the review for any completed annotation task. Workers access the completed CSV via the same Google Drive folder and verify claims using the `source_url` links. Full instructions are in `worker_facing/2.2_review_instructions.md`.
 
