@@ -6,7 +6,7 @@
 
 ## Overview
 
-Every annotation row is reviewed before it enters the delivery pool. Review is open — any qualified worker may review any completed row across any task set. Review is per-row, not per-set: a worker picks any row where `question` and `answer` are filled in but `Rating (for reviewer)` is empty, and submits their review. Payment for both annotation and review is self-reported via the `time_spent` column at $20/hour base, with per-question bonuses for Category B and C work.
+Every annotation row is reviewed before it enters the delivery pool. Review is open — any qualified worker may review any completed row across any annotation set. Review is per-row, not per-set: a worker picks any row where `question` and `answer` are filled in but `Rating (for reviewer)` is empty, and submits their review. Payment for the review is self-reported via the `time_spent` column at $20/hour base, with per-question bonuses for Category B and C work.
 
 ---
 
